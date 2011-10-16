@@ -395,6 +395,19 @@ class Softlayer_SoapClient extends SoapClient
     }
 
     /**
+     * Set an object filter on an API call
+     *
+     * @param SoftLayer_ObjectMask $filter Object filter object
+     * @return void
+     */
+    public function setObjectFilter(SoftLayer_ObjectMask $filter)
+    {
+        if(!is_null($filter)){
+            $this->addHeader($this->_serviceName.'ObjectFilter',$filter);
+        }
+    }
+
+    /**
      * Set a result limit on a SoftLayer API call
      *
      * Many SoftLayer API methods return a group of results. These methods

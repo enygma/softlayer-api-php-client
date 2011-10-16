@@ -1,0 +1,27 @@
+Object filters allow you to sort and filter down your results with the help of a few simple methods.
+
+See examples below for sample use cases:
+<pre><code>
+<?php
+
+require_once dirname(__FILE__) . '/SoftLayer/SoapClient.class.php';
+
+$client = SoftLayer_SoapClient::getClient('SoftLayer_Account', null, $apiUsername, $apiKey);
+
+$mask 	= new SoftLayer_ObjectMask();
+$filter = new SoftLayer_ObjectFilter();
+
+$mask->hardware->softwareComponents;
+$filter->hardware->softwareComponets->id->sortUp();
+
+$client->setObjectMask($mask);
+$client->setObjectFilter($filter);
+
+try {
+	$hardwareList = $client->getHardware();
+	var_dump($hardwareList);
+}catch(Exception $e){
+	echo 'ERROR: '.$e->getMessage();
+}
+?>
+</code></pre>

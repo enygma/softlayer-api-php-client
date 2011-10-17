@@ -11,17 +11,25 @@ $client = SoftLayer_SoapClient::getClient('SoftLayer_Account', null, $apiUsernam
 $mask 	= new SoftLayer_ObjectMask();
 $filter = new SoftLayer_ObjectFilter();
 
-$mask->hardware->softwareComponents;
-$filter->hardware->softwareComponets->id->sortUp();
+$mask->hardware->networkComponents;
+$filter->hardware->serialNumber->contains('ASL');
 
 $client->setObjectMask($mask);
 $client->setObjectFilter($filter);
 
 try {
 	$hardwareList = $client->getHardware();
-	var_dump($hardwareList);
+	//var_dump($hardwareList);
+
+	foreach($hardwareList as $hardware){
+		if(isset($hardware->serialNumber)) { echo $hardware->serialNumber."\n"; }
+	}
 }catch(Exception $e){
 	echo 'ERROR: '.$e->getMessage();
 }
 ?>
 </code></pre>
+
+The example above fetches the full list of hardware on the account, including the network components
+for each. The filter tells the API to return only the records that have a serial number value
+that contains the string "ASL". The rest of the script just outputs the results.

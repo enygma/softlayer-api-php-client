@@ -8,12 +8,12 @@ class SoftLayer_ObjectFilter extends SoftLayer_ObjectMask
 	/**
 	 * Options for the filter
 	 */
-	private $options 	= array();
+	//private $options 	= array();
 
 	/**
 	 * Operation to perform
 	 */
-	private $operation 	= null;
+	//private $operation 	= null;
 
 	/**
 	 * Sort the object by the direction
@@ -63,7 +63,7 @@ class SoftLayer_ObjectFilter extends SoftLayer_ObjectMask
 	 */
 	private function _addOptions($options)
 	{
-		if(is_array($options) && count($options)){
+		if(is_array($options) && count($options)>0){
 			foreach($options as $option){
 				$this->_addOption($option);
 			}
@@ -296,7 +296,7 @@ class SoftLayer_ObjectFilter extends SoftLayer_ObjectMask
 	{
 		if($date != null){
 			$this->operation = 'lessThanDate';
-			$this->_addOption($this->_createOption('date',array($date));
+			$this->_addOption($this->_createOption('date',array($date)));
 		}
 		return $this;
 	}

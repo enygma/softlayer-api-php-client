@@ -28,6 +28,7 @@
  */
 
 require_once dirname(__FILE__) . '/Common/ObjectMask.class.php';
+require_once dirname(__FILE__) . '/Common/ObjectFilter.class.php';
 require_once dirname(__FILE__) . '/SoapClient/AsynchronousAction.class.php';
 
 if (!extension_loaded('soap')) {
